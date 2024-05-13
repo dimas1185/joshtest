@@ -14,6 +14,9 @@ namespace joshai {
             is_running = false;
         }
 
+        // monitors lights infinitely until stop() is executed
+        // hardcoded server is http://localhost:8080
+        // hardcoded sleep between fetching requests 0.5 seconds
         void start() {
             using namespace std;
 
@@ -29,6 +32,7 @@ namespace joshai {
                             if (cur_light_res->status == httplib::StatusCode::OK_200) {
                                 cur_lights.update_light(k, cur_light_res->body);
                             } else if (cur_light_res->status == httplib::StatusCode::NotFound_404) {
+                                // sometimes server returns deleted value, probably server bug so just skip it here
                                 continue;
                             } else {
                                 // in production grade code there should be used proper logging library 

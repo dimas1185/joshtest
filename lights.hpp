@@ -35,6 +35,7 @@ private:
 public:
 
     lights() = default;
+    // takes json string
     lights(const std::string& list_str) {
         auto jlist = nlohmann::json::parse(list_str);
         for (auto& element : jlist) {
@@ -47,6 +48,7 @@ public:
         return light_collection;
     }
 
+    // updates specific light entry from json string provided
     void update_light(const std::string& id, const std::string& light_str) {
         auto light_data = nlohmann::json::parse(light_str);
         auto el = light_collection.find(id);
@@ -61,6 +63,7 @@ public:
         }
     }
 
+    // overwrites lights with updated lights data and returns diff vector
     change_list update(const lights& newlights) {
         change_list diff;
 
