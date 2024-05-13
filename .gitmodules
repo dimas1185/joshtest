@@ -1,0 +1,9 @@
+[submodule "cpp-httplib"]
+	path = imports/cpp-httplib
+	url = https://github.com/yhirose/cpp-httplib
+[submodule "imports/json"]
+	path = imports/json
+	url = https://github.com/nlohmann/json
+[submodule "imports/doctest"]
+	path = imports/doctest
+	url = https://github.com/doctest/doctest
