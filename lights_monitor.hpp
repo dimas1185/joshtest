@@ -23,7 +23,8 @@ namespace joshai {
             httplib::Client http_client("http://localhost:8080");
             while (is_running) {
                 try {
-
+                    // the way we have to querry server and then every single light should be optimized on server side
+                    // it could be done by adding all extra information to the lights get request
                     auto all_lights_res = http_client.Get("/lights");
                     if (all_lights_res->status == httplib::StatusCode::OK_200) {
                         lights cur_lights(all_lights_res->body);
@@ -70,6 +71,7 @@ namespace joshai {
                     cout << "json error: " << e.what() << endl;
                 }
 
+                // alternative to polling could be websockets if server would support that
                 sleep(0.5);
             }
         }
